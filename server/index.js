@@ -7,7 +7,7 @@ import fileUpload from "express-fileupload";
 import summary from "./routes/Summary.js"
 
 dotenv.config();
-connectDB();
+// connectDB();
 
 const app = express();
 app.use(express.json());
