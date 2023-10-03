@@ -4,9 +4,10 @@ import dotenv from "dotenv";
 import connectDB from "./db.js";
 import cors from "cors";
 import fileUpload from "express-fileupload";
+import summary from "./routes/Summary.js"
 
 dotenv.config();
-connectDB();
+// connectDB();
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,10 @@ app.use(
     useTempFiles: true,
   }),
 );
+app.get("/", (req, res) => {
+  res.send("hello")
+})
+app.use("/api" , summary)
 
 const server = http.createServer(app);
 
