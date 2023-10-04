@@ -13,7 +13,10 @@ const Home = () => {
   const [onSubmit, setonSubmit] = useState(false);
 
   return (
-    <Container className="d-flex align-items-center justify-content-center">
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ height: "100vh" }}
+    >
       <div className={style.box}>
         <div className="w-100">
           <Form.Label htmlFor="basic-url">Paste Youtube URL here</Form.Label>
