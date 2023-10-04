@@ -1,4 +1,23 @@
-.heading {
-  background-color: var(--primary-color);
-  padding: 1rem;
+.box {
+  background-color: aliceblue;
+  width: 50rem;
+  margin: 6rem 0 0 16rem;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 2rem;
+}
+.rad {
+  margin-left: 14rem;
+}
+.btn {
+  margin-left: 19rem;
+}
+.aftercheck {
+  width: 12rem;
+  margin-left: 2rem;
+}
+.summary {
+  text-align: center;
+  margin-top: 1rem;
+  margin-right: 2rem;
 }
