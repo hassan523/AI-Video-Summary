@@ -11,7 +11,10 @@ const Home = () => {
   const [check, setCheck] = useState(0);
   // const [url, seturl] = useState("");
   const [onSubmit, setonSubmit] = useState(false);
-
+  const handleSubmit = () => {
+    setonSubmit(true);
+    navigate("/login");
+  };
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
@@ -78,7 +81,7 @@ const Home = () => {
           ) : null}
         </div>
         <div className={style.btn}>
-          <Button onClick={() => setonSubmit(true)}>Submit</Button>
+          <Button onClick={() => handleSubmit()}>Submit</Button>
         </div>
         {onSubmit ? (
           <div className={style.summary}>
