@@ -4,10 +4,11 @@ import dotenv from "dotenv";
 import connectDB from "./db.js";
 import cors from "cors";
 import fileUpload from "express-fileupload";
-import summary from "./routes/Summary.js"
+import summary from "./routes/Summary.js";
+import auth from "./routes/auth.js";
 
 dotenv.config();
-// connectDB();
+connectDB();
 
 const app = express();
 app.use(express.json());
@@ -18,9 +19,10 @@ app.use(
   }),
 );
 app.get("/", (req, res) => {
-  res.send("hello")
-})
-app.use("/api" , summary)
+  res.send("hello");
+});
+app.use("/api", summary);
+app.use("/auth", auth);
 
 const server = http.createServer(app);
 
