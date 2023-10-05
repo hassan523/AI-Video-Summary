@@ -41,7 +41,6 @@ const Signup = () => {
               />
             </InputGroup>
             <Button
-              className={style.btnlogin}
               style={{
                 backgroundColor: isHovered ? "#c7042e" : "#ee1040",
                 border: "none",

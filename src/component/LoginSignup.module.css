@@ -8,9 +8,6 @@ body {
 .insidebox {
   padding: 2rem 2rem 2rem 1rem;
 }
-.btnlogin:hover {
-  background-color: #c7042e;
-}
 .btn {
   border: none;
   background-color: white;
