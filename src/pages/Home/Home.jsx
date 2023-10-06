@@ -5,16 +5,49 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
+import axios from "axios";
+import API_BASE_URL from "../../config";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [check, setCheck] = useState(0);
-  // const [url, seturl] = useState("");
+  const [check, setCheck] = useState("");
+  const [url, seturl] = useState("");
+  const [keyPoints, setKeyPoints] = useState(0);
+  const [wordCounter, setWordCounter] = useState(0);
+
+  const [ytData, setYtData] = useState("");
+  const [keyPointData, setKeyPointData] = useState([]);
+
   const [onSubmit, setonSubmit] = useState(false);
-  const handleSubmit = () => {
-    setonSubmit(true);
-    navigate("/login");
+
+  const handleSubmit = async () => {
+    try {
+      if (check === "paragraph") {
+        const res = await axios.post(`${API_BASE_URL}/api/summary`, {
+          vidURL: url,
+          contentType: check,
+          wordCounter: wordCounter,
+        });
+        setYtData(res.data);
+        setonSubmit(true);
+        console.log(res.data);
+      } else if (check === "points") {
+        const res = await axios.post(`${API_BASE_URL}/api/summary`, {
+          vidURL: url,
+          contentType: check,
+          keyPoints: keyPoints,
+        });
+        setKeyPointData(res.data);
+        setonSubmit(true);
+        console.log(res.data);
+      } else {
+        alert("Invalid Request");
+      }
+    } catch (error) {
+      alert("Video Is Copyrighted");
+    }
   };
+
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
@@ -29,7 +62,7 @@ const Home = () => {
               id="basic-url"
               aria-describedby="basic-addon3"
               placeholder="https://www.youtube.com/"
-              // onChange={(e) => seturl(e.target.value)}
+              onChange={(e) => seturl(e.target.value)}
             />
           </InputGroup>
         </div>
@@ -42,7 +75,7 @@ const Home = () => {
                 name="group1"
                 type={type}
                 id={`inline-${type}-1`}
-                onChange={() => setCheck(1)}
+                onChange={() => setCheck("points")}
               />
               <Form.Check
                 inline
@@ -50,14 +83,18 @@ const Home = () => {
                 name="group1"
                 type={type}
                 id={`inline-${type}-2`}
-                onChange={() => setCheck(2)}
+                onChange={() => setCheck("paragraph")}
               />
             </div>
           ))}
-          {check !== 0 ? (
+          {check !== "" ? (
             <div className={style.aftercheck}>
-              {check === 1 ? (
-                <InputGroup size="sm" className="mb-3">
+              {check === "points" ? (
+                <InputGroup
+                  onChange={(e) => setKeyPoints(e.target.value)}
+                  size="sm"
+                  className="mb-3"
+                >
                   <InputGroup.Text id="inputGroup-sizing-sm">
                     Key points
                   </InputGroup.Text>
@@ -67,7 +104,11 @@ const Home = () => {
                   />
                 </InputGroup>
               ) : (
-                <InputGroup size="sm" className="mb-3">
+                <InputGroup
+                  onChange={(e) => setWordCounter(e.target.value)}
+                  size="sm"
+                  className="mb-3"
+                >
                   <InputGroup.Text id="inputGroup-sizing-sm">
                     Words Count
                   </InputGroup.Text>
@@ -81,11 +122,24 @@ const Home = () => {
           ) : null}
         </div>
         <div className={style.btn}>
-          <Button onClick={() => handleSubmit()}>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </div>
         {onSubmit ? (
           <div className={style.summary}>
             <h3>Summary</h3>
+            <div>
+              {keyPointData.length !== 0 ? (
+                <ol>
+                  {keyPointData.map((item) => (
+                    <>
+                      <li key={item.index}>{item.keyPoint}</li>
+                    </>
+                  ))}
+                </ol>
+              ) : (
+                <p>{ytData}</p>
+              )}
+            </div>
           </div>
         ) : null}
       </div>
