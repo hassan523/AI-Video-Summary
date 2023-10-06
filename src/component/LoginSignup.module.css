@@ -1,0 +1,15 @@
+body {
+  background-color: #2e719e;
+}
+.loginbox {
+  box-shadow: 1px 1px 2px black;
+  border-radius: 10px;
+}
+.insidebox {
+  padding: 2rem 2rem 2rem 1rem;
+}
+.btn {
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+}
