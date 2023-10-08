@@ -3,7 +3,7 @@ import express from "express";
 import OpenAI from "openai";
 import axios from "axios";
 // // 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
-import { HfInference } from "@huggingface/inference";
+import { HfInference } from "@huggingface/inference"
 
 import { TextServiceClient } from "@google-ai/generativelanguage";
 import { GoogleAuth } from "google-auth-library";
@@ -108,10 +108,15 @@ const router = express.Router();
 //   }
 // });
 
-const hf = new HfInference("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");
+const hf = new HfInference('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')
+
+
+
+
 
 router.post("/summary", async (req, res) => {
   try {
+
     const MODEL_NAME = "models/text-bison-001";
     const API_KEY = "AIzaSyDkqCUi9KqZK8yQCPT4Htxu4aGuZJSyLa0";
 
@@ -128,7 +133,7 @@ router.post("/summary", async (req, res) => {
 
       const promptString = joined;
 
-      const stopSequences = [];
+      const stopSequences = []
 
       const response = await client.generateText({
         // required, which model to use to generate the result
@@ -144,30 +149,18 @@ router.post("/summary", async (req, res) => {
         // optional, maximum number of output tokens to generate
         max_output_tokens: 1024,
         // optional, sequences at which to stop model generation
-        stop_sequences: req.body.wordCounter - 1,
+        stop_sequences: req.body.wordCounter,
 
         // optional, safety settings
-        safety_settings: [
-          { category: "HARM_CATEGORY_DEROGATORY", threshold: 1 },
-          { category: "HARM_CATEGORY_TOXICITY", threshold: 1 },
-          { category: "HARM_CATEGORY_VIOLENCE", threshold: 2 },
-          { category: "HARM_CATEGORY_SEXUAL", threshold: 2 },
-          { category: "HARM_CATEGORY_MEDICAL", threshold: 2 },
-          { category: "HARM_CATEGORY_DANGEROUS", threshold: 2 },
-        ],
+        safety_settings: [{ "category": "HARM_CATEGORY_DEROGATORY", "threshold": 1 }, { "category": "HARM_CATEGORY_TOXICITY", "threshold": 1 }, { "category": "HARM_CATEGORY_VIOLENCE", "threshold": 2 }, { "category": "HARM_CATEGORY_SEXUAL", "threshold": 2 }, { "category": "HARM_CATEGORY_MEDICAL", "threshold": 2 }, { "category": "HARM_CATEGORY_DANGEROUS", "threshold": 2 }],
         prompt: {
-          text: ` Give Me The Summary Of This Content In Exact ${req.body.wordCounter} Amount of words ${promptString}`,
-        },
-      });
+          text: ` Give Me The Summary Of This Content In Maximum ${req.body.wordCounter} Amount of words ${promptString}`,
+        }
+      })
 
       const outputArray = await response.map((item) => {
         // Check if 'item' is not null and has the expected structure
-        if (
-          item &&
-          item.candidates &&
-          item.candidates[0] &&
-          item.candidates[0].output
-        ) {
+        if (item && item.candidates && item.candidates[0] && item.candidates[0].output) {
           return item.candidates[0].output;
         }
         // Return null for invalid or missing data
@@ -177,7 +170,12 @@ router.post("/summary", async (req, res) => {
       // Filter out null values
       const filteredOutputArray = outputArray.filter((item) => item !== null);
       res.status(200).json(filteredOutputArray);
+
+
     } else if (req.body.contentType === "points" && req.body.keyPoints) {
+
+
+
       const transcript = await YoutubeTranscript.fetchTranscript(
         req.body.vidURL
       );
@@ -185,12 +183,12 @@ router.post("/summary", async (req, res) => {
 
       const promptString = joined;
 
-      const stopSequences = [];
+      const stopSequences = []
 
       const response = await client.generateText({
         // required, which model to use to generate the result
         model: MODEL_NAME,
-        // optional, 0.0 always uses the highest-probability result
+        // optional, 0.0 always uses the highest-probability resultadadada
         temperature: 0.6,
         // optional, how many candidate results to generate
         candidateCount: 1,
@@ -199,32 +197,21 @@ router.post("/summary", async (req, res) => {
         // optional, for nucleus sampling decoding strategy
         top_p: 0.95,
         // optional, maximum number of output tokens to generate
-        max_output_tokens: req.body.keyPoints - 1,
+        max_output_tokens: req.body.keyPoints,
         // optional, sequences at which to stop model generation
         stop_sequences: stopSequences,
 
         // optional, safety settings
-        safety_settings: [
-          { category: "HARM_CATEGORY_DEROGATORY", threshold: 1 },
-          { category: "HARM_CATEGORY_TOXICITY", threshold: 1 },
-          { category: "HARM_CATEGORY_VIOLENCE", threshold: 2 },
-          { category: "HARM_CATEGORY_SEXUAL", threshold: 2 },
-          { category: "HARM_CATEGORY_MEDICAL", threshold: 2 },
-          { category: "HARM_CATEGORY_DANGEROUS", threshold: 2 },
-        ],
+        safety_settings: [{ "category": "HARM_CATEGORY_DEROGATORY", "threshold": 1 }, { "category": "HARM_CATEGORY_TOXICITY", "threshold": 1 }, { "category": "HARM_CATEGORY_VIOLENCE", "threshold": 2 }, { "category": "HARM_CATEGORY_SEXUAL", "threshold": 2 }, { "category": "HARM_CATEGORY_MEDICAL", "threshold": 2 }, { "category": "HARM_CATEGORY_DANGEROUS", "threshold": 2 }],
         prompt: {
-          text: ` Give Me The Summary Of This Content In Exact ${req.body.wordCounter} Key Points ${promptString}`,
-        },
-      });
+          text: ` Give Me The Summary Of This Content In Maximum ${req.body.keyPoints} Key Points ${promptString}`,
+        }
+      })
+
 
       const outputArray = await response.map((item) => {
         // Check if 'item' is not null and has the expected structure
-        if (
-          item &&
-          item.candidates &&
-          item.candidates[0] &&
-          item.candidates[0].output
-        ) {
+        if (item && item.candidates && item.candidates[0] && item.candidates[0].output) {
           return item.candidates[0].output;
         }
         // Return null for invalid or missing data
@@ -234,6 +221,9 @@ router.post("/summary", async (req, res) => {
       // Filter out null values
       const filteredOutputArray = outputArray.filter((item) => item !== null);
       res.status(200).json(filteredOutputArray);
+
+
+
     } else {
       res.status(400).json({ message: "Invalid Request" });
     }
@@ -244,5 +234,6 @@ router.post("/summary", async (req, res) => {
 });
 
 export default router;
+
 
 // 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
