@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Main from "../pages/main/Main";
 import Home from "../pages/Home/Home";
+import Signup from "../pages/Sign-up/Signup";
 
 const user = [
   {
@@ -18,6 +19,10 @@ const user = [
     element: <Login />,
   },
 
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
   {
     path: "*",
     element: <Navigate to="/" />,
