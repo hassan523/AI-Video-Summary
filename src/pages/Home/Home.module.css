@@ -1,22 +1,217 @@
-.box {
-  background-color: aliceblue;
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 2rem;
+/* <!-- FAQ,s Area...... --> */
+.section_five_wrapper {
+  background: #000000;
+  /* height: 20rem; */
+}
+.faqs_container {
+  padding: 3rem 0rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  gap: 2rem;
+}
+.section_five_wrapper h1 {
+  color: red;
+  text-align: center;
+}
+/* .faqs_list  */
+
+.faq {
   width: 100%;
-  height: 40%;
 }
 
-.aftercheck {
-  width: 12rem;
-  margin-left: 2rem;
+.question {
+  color: #a4a4a4;
+  font-weight: normal;
+  position: relative;
+  margin: 0 auto;
+  opacity: 0.9;
+  display: block;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.summary {
-  text-align: left;
-  margin-top: 1rem;
-  margin-right: 2rem;
+.answers {
+  margin: 0 0 7px 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  position: relative;
+  opacity: 0;
+  transition: 0.7s ease;
+  transform: translateY(-100%);
+  padding-top: 0.5rem;
+  font-size: 1.3rem;
+  color: #a4a4a4;
+  height: 0;
+  display: flex;
+  align-items: center;
+}
+.faqs_dot {
+  font-size: 2rem;
+}
+
+.questions:checked ~ .answers {
+  height: 6rem;
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 1;
+}
+
+.plus {
+  margin-left: 10px;
+  z-index: 5;
+  line-height: 100%;
+  user-select: none;
+  transition: 0.3s ease;
+  font-size: 3rem;
+  color: white;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  /* top: 0; */
+  bottom: 0;
+}
+
+.questions:checked ~ .plus {
+  transform: rotate(45deg);
+}
+
+.questions {
+  display: none;
+}
+@media screen and (max-width: 700px) {
+  .question h5 {
+    font-size: 1rem;
+  }
+  .questions:checked ~ .answers {
+    height: 3rem;
+  }
+  .faq {
+    width: 100%;
+  }
+  .answers {
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  .questions:checked ~ .answers {
+    height: 7rem;
+    padding: 0.5rem 2rem 0rem 1rem;
+  }
+}
+@media screen and (max-width: 350px) {
+  .question h5 {
+    font-size: 0.8rem;
+  }
+  .plus {
+    top: 0;
+    font-size: 1.5rem;
+  }
+  .answers {
+    padding-left: 1rem;
+  }
+}
+/* {<!-- Contact-us Area...... -->} */
+.Contact_us_wrapper {
+  display: flex;
+}
+.contact_us_right {
+  background: red;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.contact_us_container {
+  padding: 3rem 5rem 3rem 3rem !important;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.contact_us_container div h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+.contact_us_fields {
+  display: flex;
+  gap: 1rem;
+}
+.contact_us_fields input {
+  padding: 0.8rem 1rem;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 10px;
+  outline: none;
+}
+.contact_us_fields input[type="text"] {
+  color: white;
+}
+.contact_us_fields input::placeholder {
+  color: white;
+}
+.contact_us_btn {
+  background: black;
+  border: none;
+  width: 10rem;
+  color: white;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+}
+@media screen and (max-width: 1210px) {
+  .Contact_us_wrapper {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 990px) {
+  .contact_us_container {
+    padding: 3rem 0.5rem 3rem 0.5rem !important;
+  }
+  .contact_us_container div h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+}
+@media screen and (max-width: 450px) {
+  .contact_us_container div p {
+    font-size: 0.8rem !important;
+  }
+  .contact_us_fields {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+  }
+}
+
+/* slider */
+
+.section_two_wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10rem 0rem;
+  align-items: center;
+  background: black;
+}
+.section_two_swiper {
+  width: 92vmax;
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+  padding: 4rem 0rem 6rem 0rem;
+}
+.section_two_swiper_images:hover {
+  filter: none !important;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+@media screen and (max-width: 990px) {
+  .section_two_swiper {
+    width: 80vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .section_two_swiper_images {
+    width: 10rem !important;
+  }
 }
