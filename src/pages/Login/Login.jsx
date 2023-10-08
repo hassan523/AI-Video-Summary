@@ -5,12 +5,21 @@ import gif from "../../assets/Login/login_bg.gif";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BiLogoGmail } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(true);
+  const navigate = useNavigate();
+
   return (
     <div className={style.login_wrapper}>
-      <h6 className={style.Login_back}>BACK</h6>
+      <h6
+        className={style.Login_back}
+        onClick={() => navigate("/")}
+        role="button"
+      >
+        BACK
+      </h6>
       <Container className={style.login_container_wrapper}>
         <img
           src={gif}

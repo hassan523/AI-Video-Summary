@@ -65,6 +65,12 @@
 .btn_register:hover {
   background-color: red;
 }
+.Login_back {
+  color: white;
+  position: absolute;
+  top: 4rem;
+  left: 6rem;
+}
 @media (max-width: 768px) {
   .login_fields_wrapper h1 {
     font-size: 2rem;
@@ -90,5 +96,18 @@
   .divtext {
     width: 15rem;
     padding-left: 0.5rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .login_bg {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 420px) {
+  .Login_back {
+    color: white;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
   }
 }

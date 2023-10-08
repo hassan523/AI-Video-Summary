@@ -6,6 +6,7 @@ import img_one from "../../assets/slider/img_one.png";
 import img_two from "../../assets/slider/img_two.png";
 import img_three from "../../assets/slider/img_three.png";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Header from "../../components/Header/Header";
 
 const faqs = [
   {
@@ -77,6 +78,7 @@ const slider_img = [
 const Home = () => {
   return (
     <div>
+      <Header />
       {/* <!-- FAQ,s Area...... --> */}
       <section className={style.section_five_wrapper}>
         <Container className={style.faqs_container}>

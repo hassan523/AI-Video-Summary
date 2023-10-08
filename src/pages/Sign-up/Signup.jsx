@@ -2,10 +2,20 @@ import React from "react";
 import style from "./signup.module.css";
 import { Container } from "react-bootstrap";
 import gif from "../../assets/login/login_bg.gif";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={style.login_wrapper}>
+      <h6
+        className={style.Login_back}
+        onClick={() => navigate("/")}
+        role="button"
+      >
+        BACK
+      </h6>
       <Container className={style.login_container_wrapper}>
         <img
           src={gif}
@@ -13,14 +23,16 @@ const Signup = () => {
           style={{
             objectFit: "contain",
             position: "absolute",
-            top: 0,
-            bottom: 0,
             filter: "blur(20px)",
           }}
+          className={style.login_bg}
         />
         <div className={style.login_fields_wrapper}>
           <h1>YOUSUMMARISE</h1>
-          <form action="" className={style.form_sign}>
+          <form
+            className={style.form_sign}
+            onSubmit={(e) => e.preventDefault()}
+          >
             <h3 style={{ color: "white", fontWeight: "400" }}>
               REGISTRATION FORM
             </h3>
