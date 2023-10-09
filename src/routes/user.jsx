@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
+import Login from "../pages/Login/Login";
+import Main from "../pages/main/Main";
 import Home from "../pages/Home/Home";
-import InnerPage from "../pages/innerPage/InnerPage";
-import Login from "../component/Login";
-import Signup from "../component/Signup";
+import Signup from "../pages/Sign-up/Signup";
 
 const user = [
   {
@@ -10,13 +10,15 @@ const user = [
     element: <Home />,
   },
   {
-    path: "/inner-page",
-    element: <InnerPage />,
+    path: "/main",
+    element: <Main />,
   },
+
   {
     path: "/login",
     element: <Login />,
   },
+
   {
     path: "/signup",
     element: <Signup />,
