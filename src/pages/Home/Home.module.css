@@ -215,3 +215,125 @@
     width: 10rem !important;
   }
 }
+/* marquee */
+.scroll_text {
+  padding: 8rem 0rem;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: black;
+}
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 5rem;
+}
+
+.marquee div {
+  width: 250%;
+  position: absolute;
+  overflow: hidden;
+  animation: marquee 35s linear infinite;
+}
+.marquee h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fff;
+  -webkit-text-size-adjust: 1rem;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+.marquee_second {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 5rem;
+  padding-bottom: 4rem;
+}
+.marquee_second div {
+  width: 250%;
+  position: absolute;
+  overflow: hidden;
+  animation: marqueeSecond 35s linear infinite;
+}
+.marquee_second_para {
+  font-size: 4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fff;
+  -webkit-text-size-adjust: 1rem;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes marqueeSecond {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .marquee span,
+  .marquee_second p {
+    font-size: 8vmin !important;
+    height: 3.5rem;
+    display: block;
+  }
+  .scroll_text {
+    gap: 0rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .marquee,
+  .marquee_second {
+    height: 5rem !important;
+  }
+  .marquee span,
+  .marquee_second p {
+    height: 3rem;
+  }
+}
+@media screen and (max-width: 300px) {
+  .marquee span,
+  .marquee_second p {
+    height: 2rem;
+  }
+}
+/* Third Section */
+.third_section_wrapper {
+  padding: 4rem 0rem;
+  background: black;
+}
+.third_sec_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 1rem;
+  place-items: center;
+}
+.third_sec_container div {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #646262;
+  border-radius: 12px;
+}
+.third_sec_container div h3 {
+  color: red;
+}
+.third_sec_container div p {
+  color: white;
+}

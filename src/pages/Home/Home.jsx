@@ -1,39 +1,43 @@
 import React from "react";
 import style from "./home.module.css";
 import { Container } from "react-bootstrap";
-import Contact_us_gif from "../../assets/contactUs/side_img.gif";
 import img_one from "../../assets/slider/img_one.png";
 import img_two from "../../assets/slider/img_two.png";
 import img_three from "../../assets/slider/img_three.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Header from "../../components/Header/Header";
-
+import Footer from "../../components/footer/Footer";
+import svg_one from "../../assets/Third_Section/third_section_one_img.svg";
+import svg_two from "../../assets/Third_Section/third_section_img_two.svg";
+import svg_three from "../../assets/Third_Section/third_section_img_three.svg";
+import Contact from "../../components/ContactUs/Contact";
 const faqs = [
   {
-    question: "What is web hosting?",
+    question: "What types of videos can be summarized?",
     answer:
-      "Web hosting is a service that stores website files on a server, making them accessible on the internet. Users access websites by typing domain names.",
+      "Videos on diverse topics, including education, news, and more, can be summarized.",
+  },
+  {
+    question: "Can I customize the length of the summary?",
+    answer: "Yes, you can customize summary length based on preferences.",
   },
   {
     question:
-      "What is the difference between a domain name and a website hosting service?",
+      "Why did I receive an error message that states a summary cannot be provided?",
     answer:
-      "A domain name is the web address, while website hosting is the service that stores website files. The domain is like an address, hosting is like the physical space for the website.",
+      "Error messages may occur due to video complexity or technical issues.",
   },
   {
-    question: "What is responsive web design, and why is it important?",
-    answer:
-      "Responsive web design ensures websites adapt to various devices and screen sizes, providing a consistent and user-friendly experience, whether on desktops, tablets, or smartphones.",
+    question: "Are the summaries 100% accurate?",
+    answer: "Summaries aim for accuracy but may vary. Review for context.",
   },
   {
-    question: "Why are SSL certificates important for a website?",
-    answer:
-      "SSL certificates encrypt data exchanged between users' browsers and a website's server, ensuring secure transmission of sensitive information. This encryption builds user trust and enhances security.",
+    question: "Can the tool summarize in other languages?",
+    answer: "The tool supports summarization in multiple languages.",
   },
   {
-    question: "What is the significance of SEO for a website?",
-    answer:
-      "SEO, or Search Engine Optimization, enhances a website's visibility on search engines. It involves optimizing content, keywords, speed, and backlinks to improve search engine rankings, resulting in more organic traffic.",
+    question: "What languages do you support when writing content?",
+    answer: "Content writing is supported in various languages.",
   },
 ];
 
@@ -79,6 +83,56 @@ const Home = () => {
   return (
     <div>
       <Header />
+      {/* Third Section */}
+      <section className={style.third_section_wrapper}>
+        <Container className={style.third_sec_container}>
+          <div>
+            <img src={svg_one} alt="no img" />
+            <h3>Get the Most Out of Your Time</h3>
+            <p>
+              Reading summaries gives you faster access to key information
+              compared to watching lengthy videos when time is scarce.
+            </p>
+          </div>
+          <div>
+            <img src={svg_one} alt="no img" />
+            <h3>Get the Most Out of Your Time</h3>
+            <p>
+              Reading summaries gives you faster access to key information
+              compared to watching lengthy videos when time is scarce.
+            </p>
+          </div>
+          <div>
+            <img src={svg_one} alt="no img" />
+            <h3>Get the Most Out of Your Time</h3>
+            <p>
+              Reading summaries gives you faster access to key information
+              compared to watching lengthy videos when time is scarce.
+            </p>
+          </div>
+        </Container>
+      </section>
+      {/* summarise Animation */}
+      <span className={style.scroll_text}>
+        <div className={style.marquee}>
+          <div>
+            <h1>
+              * you summerise * you summerise * you summerise* you summerise *
+              you summerise * you summerise* you summerise * you summerise * you
+              summerise
+            </h1>
+          </div>
+        </div>
+        <div className={style.marquee_second}>
+          <div>
+            <h1 className={style.marquee_second_para}>
+              * you summerise * you summerise * you summerise* you summerise *
+              you summerise * you summerise* you summerise * you summerise * you
+              summerise
+            </h1>
+          </div>
+        </div>
+      </span>
       {/* <!-- FAQ,s Area...... --> */}
       <section className={style.section_five_wrapper}>
         <Container className={style.faqs_container}>
@@ -117,35 +171,7 @@ const Home = () => {
         </Container>
       </section>
       {/* <!-- Contact-us Area...... --> */}
-      <section className={style.Contact_us_wrapper}>
-        <img
-          src={Contact_us_gif}
-          alt="no img found"
-          style={{
-            width: "100%",
-            objectFit: "contain",
-            height: "30rem",
-          }}
-        />
-        <div className={style.contact_us_right}>
-          <Container className={style.contact_us_container}>
-            <div>
-              <h1>Contact Us</h1>
-              <p style={{ color: "white" }}>
-                If you have any questions, suggestions, or feedback, please
-                don't hesitate to reach out to us. We value your input and are
-                committed to enhancing your experience with YouSummarised.
-              </p>
-            </div>
-
-            <div className={style.contact_us_fields}>
-              <input type="text" placeholder="Enter your Name" />
-              <input type="text" placeholder="Enter your email..." />
-            </div>
-            <button className={style.contact_us_btn}>Subscribe</button>
-          </Container>
-        </div>
-      </section>
+      <Contact />
       {/* {Organization area} */}
       <section className={style.section_two_wrapper}>
         <Swiper breakpoints={breakpoints} className={style.section_two_swiper}>
@@ -175,6 +201,7 @@ const Home = () => {
           ))}
         </Swiper>
       </section>
+      <Footer />
     </div>
   );
 };

@@ -24,6 +24,7 @@ const Signup = () => {
             objectFit: "contain",
             position: "absolute",
             filter: "blur(20px)",
+            height: "100%",
           }}
           className={style.login_bg}
         />

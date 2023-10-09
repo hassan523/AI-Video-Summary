@@ -3,6 +3,7 @@ import Login from "../pages/Login/Login";
 import Main from "../pages/main/Main";
 import Home from "../pages/Home/Home";
 import Signup from "../pages/Sign-up/Signup";
+import AboutUs from "../pages/About-us/AboutUs";
 
 const user = [
   {
@@ -17,6 +18,10 @@ const user = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />,
   },
 
   {

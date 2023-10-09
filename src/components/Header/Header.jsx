@@ -11,7 +11,13 @@ const Header = () => {
         <div
           className={`d-flex align-items-center justify-content-between ${style.header_right}`}
         >
-          <h6 className="m-0">ABOUT US</h6>
+          <h6
+            className="m-0"
+            onClick={() => navigate("/about-us")}
+            role="button"
+          >
+            ABOUT US
+          </h6>
           <div className="gap-3 justify-content-round d-flex">
             <button onClick={() => navigate("/login")}>Log in</button>
             <button onClick={() => navigate("/signup")}>Sign in</button>

@@ -27,6 +27,7 @@ const Login = () => {
           style={{
             objectFit: "contain",
             position: "absolute",
+            height: "100%",
             filter: "blur(10px)",
           }}
           className={style.login_bg}
