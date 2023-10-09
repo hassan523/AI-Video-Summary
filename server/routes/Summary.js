@@ -169,7 +169,12 @@ router.post("/summary", async (req, res) => {
 
       // Filter out null values
       const filteredOutputArray = outputArray.filter((item) => item !== null);
-      res.status(200).json(filteredOutputArray);
+      // Join the elements of filteredOutputArray into a single string with newline separators
+      const responseString = filteredOutputArray.join("\n");
+
+      // Now 'responseString' contains the entire response as a single string
+
+      res.status(200).json(responseString);
 
 
     } else if (req.body.contentType === "points" && req.body.keyPoints) {
@@ -204,7 +209,7 @@ router.post("/summary", async (req, res) => {
         // optional, safety settings
         safety_settings: [{ "category": "HARM_CATEGORY_DEROGATORY", "threshold": 1 }, { "category": "HARM_CATEGORY_TOXICITY", "threshold": 1 }, { "category": "HARM_CATEGORY_VIOLENCE", "threshold": 2 }, { "category": "HARM_CATEGORY_SEXUAL", "threshold": 2 }, { "category": "HARM_CATEGORY_MEDICAL", "threshold": 2 }, { "category": "HARM_CATEGORY_DANGEROUS", "threshold": 2 }],
         prompt: {
-          text: ` Give Me The Summary Of This Content In Maximum ${req.body.keyPoints} Key Points ${promptString}`,
+          text: ` Give Me The Summary Of This Content In Maximum ${req.body.keyPoints} Key Points With No Heading ${promptString}`,
         }
       })
 
@@ -220,9 +225,21 @@ router.post("/summary", async (req, res) => {
 
       // Filter out null values
       const filteredOutputArray = outputArray.filter((item) => item !== null);
-      res.status(200).json(filteredOutputArray);
 
+      const responseString = filteredOutputArray.join("\n");
 
+      // Split the input string into individual points
+      const pointsArray = responseString.split(/\n\d+\.\s+/).filter(Boolean);
+
+      // Create an array of objects with index and point
+      const pointsObjects = pointsArray.map((point, index) => ({
+        index: index + 1, // Add 1 to make the index 1-based
+        point: point.replace(/^\d+\.\s+/, '').trim(), // Remove leading index and whitespace
+      }));
+      // 'pointsObjects' now contains an array of objects with index and point
+      // console.log(pointsObjects);
+
+      res.status(200).json(pointsObjects);
 
     } else {
       res.status(400).json({ message: "Invalid Request" });
